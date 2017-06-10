@@ -1,10 +1,7 @@
 //Modules
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Route} from 'react-router-dom' ;
-
-//Compents
-//extra codes if needed
+import {Provider} from 'react-redux';
 
 //load foundation
 $(document).foundation();
@@ -14,8 +11,6 @@ require('applicationStyles'); //added line 56 - 90 in webpack.config that remove
 
 //render
 ReactDOM.render(
-  <div>
-    <p>Gone</p>
-  </div>,
+  <p>App.js</p>,
   document.getElementById('app')
 );
