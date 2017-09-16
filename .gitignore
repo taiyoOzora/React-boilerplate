@@ -1,5 +1,4 @@
 node_modules/
-server.min.js
-webpack.config.min.js
+.DS_Store
 public/bundle.js
 config/
