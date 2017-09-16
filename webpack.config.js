@@ -11,7 +11,6 @@ try{
 module.exports={
   entry: [
     "script-loader!jquery/dist/jquery.min.js",
-    "script-loader!foundation-sites/dist/js/foundation.min.js",
     "./app/app.jsx"
   ],
   externals: {
@@ -56,10 +55,11 @@ module.exports={
     ],
     alias:{
       app: 'app',
-      applicationStyles: 'app/styles/app.scss',
+      applicationStyles: 'app/assets/styles/app.scss',
+      myJS: 'app/assets/js',
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
-      configureStore: 'app/store/configureStore.jsx'
+      configureStore: 'app/store/configureStore.jsx',
     },
     extensions: ['.js', '.jsx']
   },
@@ -68,7 +68,7 @@ module.exports={
       {
         loader: 'babel-loader',
         query:{
-          presets: ['react', 'latest', 'stage-0']
+          presets: ['react', 'env', 'stage-0']
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
