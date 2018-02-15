@@ -11,6 +11,8 @@ try{
 module.exports={
   entry: [
     "script-loader!jquery/dist/jquery.min.js",
+    "script-loader!foundation-sites/dist/js/foundation.min.js",
+    "script-loader!bootstrap/dist/js/bootstrap.min.js",
     "./app/app.jsx"
   ],
   externals: {
@@ -30,7 +32,8 @@ module.exports={
       options: {
         sassLoader: {
           includePaths: [
-              path.resolve(__dirname, './node_modules/foundation-sites/scss')
+              path.resolve(__dirname, './node_modules/foundation-sites/scss'),
+              path.resolve(__dirname, './node_modules/bootstrap/scss'),
           ]
         }
       }
@@ -85,7 +88,11 @@ module.exports={
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              includePaths: [
+                path.resolve(__dirname, 'node_modules/foundation-sites/scss'),
+                path.resolve(__dirname, './node_modules/bootstrap/scss'),
+              ]
             }
           }
         ]

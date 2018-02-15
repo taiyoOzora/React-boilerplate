@@ -19,6 +19,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bcryptjs": "^2.4.3",
     "bookshelf": "^0.10.4",
+    "bootstrap": "^4.0.0",
     "bowser": "^1.7.3",
     "css-loader": "^0.28.3",
     "deep-freeze-strict": "^1.1.1",
