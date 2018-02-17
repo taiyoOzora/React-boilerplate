@@ -14,6 +14,8 @@ Boilerplate React App
      - [JavaScript](#javascript)
      - [Data getter / Setter](#data-getter-setter)
      - [Debbugging](#debugging)
+     - [Icons](#icons)
+     - [Extensions](#extensions)
    - [Testing](#testing)
 # Packages
 ## Production
@@ -132,7 +134,12 @@ A Framework for any device, medium, and accessibility. Foundation is a family of
 #### bootstrap
 Sleek, intuitive, and powerful front-end framework for faster and easier web development.
 [GitHub Project](https://github.com/twbs/bootstrap#whats-included)
-
+#### popper.js
+Needed for bootstrap
+[GitHub Project](https://github.com/FezVrasta/popper.js/)
+#### material-ui
+For now it's to support material-ui-icons
+[GitHub Project](https://github.com/mui-org/material-ui)
 
 ### JavaScript
 #### jQuery
@@ -155,6 +162,39 @@ HTML meta tags for React-based apps. Works for both client- and server-side rend
 Redux DevTools extension.
 [Website](extension.remotedev.io)
 
+### Icons
+#### Material ui icons
+Material icons are beautifully crafted, delightful, and easy to use in your web, Android, and iOS projects.
+```
+import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
+<AccessAlarmIcon />
+```
+[Website](https://material.io/icons/)
+####fontawesome
+Get vector icons and social logos on your website with Font Awesome, the web’s most popular icon set and toolkit.
+```
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faHome from '@fortawesome/fontawesome-pro-regular/faHome';
+<FontAwesomeIcon icon={faHome}/>
+```
+OR
+app.jsx
+```
+import fontawesome from '@fortawesome/fontawesome';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import brands from '@fortawesome/fontawesome-free-brands';
+import regular from '@fortawesome/fontawesome-pro-regular';
+
+fontawesome.library.add(brands, regular);
+```
+component
+```
+<FontAwesomeIcon icon={["fab", "apple"]}/>
+<FontAwesomeIcon icon={["far", "home"]}/>
+```
+[Website](https://fontawesome.com) [GitHub Project](https://github.com/FortAwesome/react-fontawesome)
+
+### Extensions
 #### redux-form
 The best way to manage your form state in Redux.
 [Website](https://redux-form.com/7.2.3/)
