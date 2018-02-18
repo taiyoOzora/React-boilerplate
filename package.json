@@ -43,6 +43,8 @@
     "react-addons-test-utils": "^15.5.1",
     "react-document-meta": "^2.1.2",
     "react-dom": "^15.5.4",
+    "react-parallax": "^1.6.0",
+    "react-parallax-component": "^1.0.6",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",

@@ -198,6 +198,12 @@ component
 #### redux-form
 The best way to manage your form state in Redux.
 [Website](https://redux-form.com/7.2.3/)
+#### react-parallax
+A React Component for parallax effect (background image)
+[GitHub Project](https://github.com/RRutsche/react-parallax)
+#### react-parallax-component
+Easiest way to add scroll parallax effect on the component.
+[GitHub Project](https://github.com/keske/react-parallax-component)
 
 ## Testing
 #### deep-freeze-strict
