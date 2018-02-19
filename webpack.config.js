@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 const path = require('path');
 var envFile = require('node-env-file');
+const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -11,7 +12,6 @@ try{
 module.exports={
   entry: [
     "script-loader!jquery/dist/jquery.min.js",
-    "script-loader!foundation-sites/dist/js/foundation.min.js",
     "script-loader!bootstrap/dist/js/bootstrap.min.js",
     "./app/app.jsx"
   ],
@@ -25,24 +25,42 @@ module.exports={
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor:{
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        sassLoader: {
-          includePaths: [
-              path.resolve(__dirname, './node_modules/foundation-sites/scss'),
-              path.resolve(__dirname, './node_modules/bootstrap/scss'),
-          ]
-        }
+        warnings: false,
+        properties: true,
+        sequences: true,
+        dead_code: true,
+        conditionals: true,
+        comparisons: true,
+        evaluate: true,
+        booleans: true,
+        unused: true,
+        loops: true,
+        hoist_funs: true,
+        cascade: true,
+        if_return: true,
+        join_vars: true,
+        drop_debugger: true,
+        negate_iife: true,
+        unsafe: true,
+        hoist_vars: true
+      },
+      output: {
+        comments: false
       }
     }),
     new webpack.DefinePlugin({
       'process.env':{
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        GOOGLE_API_KEY: JSON.stringify(process.env.GOOGLE_API_KEY),
+        HOST_URL: JSON.stringify(process.env.HOST_URL),
       }
+    }),
+    new GoogleFontsPlugin({
+      fonts: [
+        { family: "Indie Flower" },
+        { family: "Satisfy" },
+        { family: "Vt323" },
+        { family: "Roboto", variants: [ "400", "700italic" ] }
+      ]
     })
   ],
   output:{
@@ -76,7 +94,7 @@ module.exports={
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
       }, {
-        test: /\.scss$/,
+        test: /\.(s)?css$/,
         use: [
           {loader: 'style-loader'},
           {
@@ -84,13 +102,11 @@ module.exports={
             options: {
               sourceMap: true
             }
-          },
-          {
+          },{
             loader: 'sass-loader',
             options: {
               sourceMap: true,
               includePaths: [
-                path.resolve(__dirname, 'node_modules/foundation-sites/scss'),
                 path.resolve(__dirname, './node_modules/bootstrap/scss'),
               ]
             }
