@@ -15,7 +15,6 @@ Boilerplate React App
      - [Data getter / Setter](#data-getter-setter)
      - [Debbugging](#debugging)
      - [Icons](#icons)
-     - [Fonts](#fonts)
      - [Extensions](#extensions)
    - [Testing](#testing)
 # Packages
@@ -194,22 +193,6 @@ component
 <FontAwesomeIcon icon={["far", "home"]}/>
 ```
 [Website](https://fontawesome.com) [GitHub Project](https://github.com/FortAwesome/react-fontawesome)
-
-### fonts
-#### google-fonts-webpack-plugin
-Download Google fonts to webpack build folder using google-webfonts-helper
-```
-new GoogleFontsPlugin({
-  fonts: [
-    { family: "Indie Flower" },
-    { family: "Satisfy" },
-    { family: "Vt323" },
-    { family: "Roboto", variants: [ "400", "700italic" ] },
-    /* more fonts here */
-  ]
-})
-```
-[GitHub Project](https://github.com/gabiseabra/google-fonts-webpack-plugin)
 
 ### Extensions
 #### redux-form

@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 const path = require('path');
 var envFile = require('node-env-file');
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -53,14 +52,6 @@ module.exports={
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         HOST_URL: JSON.stringify(process.env.HOST_URL),
       }
-    }),
-    new GoogleFontsPlugin({
-      fonts: [
-        { family: "Indie Flower" },
-        { family: "Satisfy" },
-        { family: "Vt323" },
-        { family: "Roboto", variants: [ "400", "700italic" ] }
-      ]
     })
   ],
   output:{

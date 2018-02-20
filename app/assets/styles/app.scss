@@ -4,10 +4,16 @@
 @import "bootstrap";
 // @import "foundation";
 // @include foundation-everything;
+@import "animate.min.css";
 
+// functions
+@import "fonts";
 
-//Components
-// @import "components/Accounts";
+// Components
+// @import "components/mainPage";
+
+// CSS hacks
+:focus{outline:none;} //remove lue box shadow
 
 $navHeight: 56px;
 
