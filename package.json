@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start",
+    "heroku-prebuild": "node set-npmrc.js",
     "build": "webpack",
     "start": "npm run build && node server/server.jsx"
   },
