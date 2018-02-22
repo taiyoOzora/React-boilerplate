@@ -134,9 +134,6 @@ A Framework for any device, medium, and accessibility. Foundation is a family of
 #### bootstrap
 Sleek, intuitive, and powerful front-end framework for faster and easier web development.
 [GitHub Project](https://github.com/twbs/bootstrap#whats-included)
-#### popper.js
-Needed for bootstrap
-[GitHub Project](https://github.com/FezVrasta/popper.js/)
 #### material-ui
 For now it's to support material-ui-icons
 [GitHub Project](https://github.com/mui-org/material-ui)
@@ -204,6 +201,9 @@ A React Component for parallax effect (background image)
 #### react-parallax-component
 Easiest way to add scroll parallax effect on the component.
 [GitHub Project](https://github.com/keske/react-parallax-component)
+#### react-typing-animation
+A fully-featured typing animation in React that supports any valid JSX.
+[GitHub Project](https://github.com/adamjking3/react-typing-animation)
 
 ## Testing
 #### deep-freeze-strict

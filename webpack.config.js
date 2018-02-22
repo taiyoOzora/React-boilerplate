@@ -11,7 +11,7 @@ try{
 module.exports={
   entry: [
     "script-loader!jquery/dist/jquery.min.js",
-    "script-loader!bootstrap/dist/js/bootstrap.min.js",
+    "script-loader!bootstrap/dist/js/bootstrap.bundle.min.js",
     "./app/app.jsx"
   ],
   externals: {
