@@ -69,9 +69,10 @@ module.exports={
       app: 'app',
       applicationStyles: 'app/assets/styles/app.scss',
       myJS: 'app/assets/js',
-      actions: 'app/actions/actions.jsx',
-      reducers: 'app/reducers/reducers.jsx',
-      configureStore: 'app/store/configureStore.jsx',
+      actions: 'app/redux/actions.jsx',
+      reducers: 'app/redux/reducers.jsx',
+      reduxConstants: 'app/redux/constants.jsx',
+      configureStore: 'app/redux/configureStore.jsx',
     },
     extensions: ['.js', '.jsx']
   },
