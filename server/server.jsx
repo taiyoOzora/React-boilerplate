@@ -38,19 +38,28 @@ app.use(express.static('public'));
 //app.use('/api/user', dbUser);
 
 // check if the url is looking for images
-app.get(/\.(jpe?g|png|gif|svg)$/i, function(req, res){
+app.get(/\.(jpe?g|png|gif|svg)$/i, function (req, res) {
   res.sendFile(path.resolve(__dirname, req.originalUrl));
 })
 
-// Anything else redirect to react-router-dom
-app.get('/*', function(req, res){
-  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+// check if the url is looking for fonts
+app.get(/\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, function (req, res) {
+  var fileName = req.originalUrl.match(/(\w|\d)+\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/)[0];
+  res.sendFile(path.resolve(__dirname, '../public/fonts', fileName));
+  // res.sendFile(path.resolve(__dirname, req.originalUrl));
 })
 
-function sendTo404(){
+// Anything else redirect to react-router-dom
+app.get("/*", handleRender);
+
+function handleRender(req, res) {
+  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+}
+
+function sendTo404() {
   res.send('Error 404');
 }
 
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
 });
