@@ -7,7 +7,8 @@
     "test": "NODE_ENV=test karma start",
     "heroku-prebuild": "node set-npmrc.js",
     "build": "webpack",
-    "start": "npm run build && node server/server.jsx"
+    "start": "npm run build && node server/server.jsx",
+    "dev-build": "webpack -w --progress"
   },
   "author": "Malcolm",
   "license": "MIT",
