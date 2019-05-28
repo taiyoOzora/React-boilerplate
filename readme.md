@@ -112,15 +112,9 @@ Browser detector.
 import bowser from 'bowser';
 ```
 [GitHub Project](https://github.com/lancedikson/bowser)
-#### getmac
-Get the mac address of the current machine you are on
-[GitHub Project](https://github.com/bevry/getmac)
-#### request-ip
+#### iplocation
 A Node.js module for retrieving a request's IP address on the server.
-[GitHub Project](https://github.com/pbojinov/request-ip)
-#### satelize
-NodeJS module for visitor geolocalization by IP
-[GitHub Project](https://github.com/darul75/satelize)
+[GitHub Project](https://github.com/roryrjb/iplocation)
 
 ### Middleware
 #### redux-thunk
@@ -128,15 +122,9 @@ Thunk middleware for Redux
 [GitHub Project](https://github.com/gaearon/redux-thunk)
 
 ### CSS
-#### foundation-sites
-A Framework for any device, medium, and accessibility. Foundation is a family of responsive front-end frameworks that make it easy to design beautiful responsive websites, apps and emails that look amazing on any device.
-[Website](https://foundation.zurb.com)
 #### bootstrap
 Sleek, intuitive, and powerful front-end framework for faster and easier web development.
 [GitHub Project](https://github.com/twbs/bootstrap#whats-included)
-#### material-ui
-For now it's to support material-ui-icons
-[GitHub Project](https://github.com/mui-org/material-ui)
 
 ### JavaScript
 #### jQuery
