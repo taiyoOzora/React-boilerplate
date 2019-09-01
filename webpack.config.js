@@ -1,7 +1,8 @@
 var webpack = require('webpack');
 const path = require('path');
 var envFile = require('node-env-file');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -14,38 +15,58 @@ module.exports = {
   entry: {
     jquery: "script-loader!jquery/dist/jquery.min.js",
     bootstrap: "script-loader!bootstrap/dist/js/bootstrap.bundle.min.js",
-    polyfill: 'babel-polyfill',
-    app: "./app/app.jsx",
+    polyfill: '@babel/polyfill',
+    main: "./app/app.jsx",
   },
   externals: {
     jquery: 'jQuery'
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin({
+    minimizer: [new TerserPlugin({
       cache: true,
       parallel: true,
-      extractComments: true,
-      uglifyOptions: {
+      extractComments: 'all',
+      terserOptions: {
+        ecma: undefined,
         warnings: false,
         parse: {},
         compress: {},
         mangle: true, // Note `mangle.properties` is `false` by default.
+        module: false,
         output: null,
-        toplevel: true,
+        toplevel: false,
         nameCache: null,
         ie8: false,
+        keep_classnames: undefined,
         keep_fnames: false,
-      }
+        safari10: false,
+        output: {
+          comments: false,
+        },
+      },
     })],
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: "all"
-    }
-  },
-  output:{
-    path: __dirname,
-    filename: './public/bundle.js'
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            return `npm.${packageName.replace('@', '')}`;
+          },
+        },
+      },
+    },
   },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
+    new HtmlWebpackPlugin({
+      fileName: 'index.html',
+      template: 'app/html-loader-template.html'
+    }),
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery',
@@ -53,6 +74,12 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
+        FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+        FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+        FIREBASE_PROJECT_ID: JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+        FIREBASE_MESSAGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID),
+        FIREBASE_APP_ID: JSON.stringify(process.env.FIREBASE_APP_ID),
       }
     })
   ],
@@ -63,9 +90,9 @@ module.exports = {
     tls: 'empty'
   },
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'public/dist/')
+    filename: 'dist/[name].[contenthash:8].js',
+    publicPath: '/',
+    path: path.resolve(__dirname, 'public/')
   },
   resolve: {
     modules: [
@@ -81,7 +108,8 @@ module.exports = {
       actions: 'app/redux/actions.jsx',
       reducers: 'app/redux/reducers.jsx',
       reduxConstants: 'app/redux/constants.jsx',
-      configureStore: 'app/redux/configureStore.jsx'
+      configureStore: 'app/redux/configureStore.jsx',
+      firebase: 'app/firebase',
     },
     extensions: ['.js', '.jsx']
   },
@@ -90,10 +118,18 @@ module.exports = {
       {
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'env', 'stage-0']
+          presets: [
+            '@babel/preset-react',
+            '@babel/preset-env',
+          ],
+          plugins: [
+            '@babel/plugin-proposal-object-rest-spread',
+            '@babel/plugin-proposal-class-properties',
+            '@babel/plugin-syntax-dynamic-import',
+          ]
         },
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/
+        exclude: /(node_modules|bower_components)/,
       }, {
         test: /\.(s)?css$/,
         use: [
@@ -101,20 +137,19 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
+              url: true,
+              import: true,
               sourceMap: true
             }
           }, {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              includePaths: [
-                path.resolve(__dirname, './node_modules/bootstrap/scss')
-              ]
             }
           }
         ]
       }
     ]
   },
-  devtool: process.env.NODE_ENV === 'production' ? undefined : 'eval-source-map'
+  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map'
 };

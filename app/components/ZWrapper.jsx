@@ -17,4 +17,4 @@ export class ZWrapper extends React.Component{
     )
   }
 }
-export default ZWrapper;
+export default connect()(ZWrapper);
