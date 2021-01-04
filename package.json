@@ -27,7 +27,7 @@
     "@fortawesome/pro-regular-svg-icons": "^5.5.0",
     "@fortawesome/pro-solid-svg-icons": "^5.5.0",
     "@fortawesome/react-fontawesome": "0.0.17",
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
